@@ -150,7 +150,7 @@ if has("autocmd")
 	" Enable file type detection
 	filetype on
 	" Treat .s files as .sh
-	autocmd BufNewFile,BufRead *.s setfiletype sh syntax=sh
+	autocmd BufNewFile,BufRead *.s set filetype=sh syntax=sh
 	" Turn on spell check for certain filetypes automatically
 	autocmd BufRead,BufNewFile *.txt setlocal spell spelllang=en_us
 	autocmd FileType gitcommit setlocal spell spelllang=en_us
