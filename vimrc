@@ -1,3 +1,6 @@
+"A vimrc file for vim settings
+"Creator : Kalyan
+
 " Don't include vi compatibility
 set nocompatible
 " Don't need modelines and the potential security hazard
@@ -11,7 +14,7 @@ set undolevels=1000
 " Use UTF-8 without BOM
 set encoding=utf-8 nobomb
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
-set clipboard=unnamed
+"set clipboard=unnamed
 " Allow cursor keys in insert mode
 set esckeys
 " Optimize for fast terminal connections
@@ -20,9 +23,14 @@ set ttyfast
 set backspace=indent,eol,start
 
 " Setup term color support
-"if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
-"  set t_Co=256
-"endif
+if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
+	set t_Co=256
+elseif $TERM == "xterm-true-color"
+	" set Vim-specific sequences for RGB colors
+	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+	set termguicolors
+endif
 " Use the Gruvbox Dark theme
 syntax enable
 set background=dark
@@ -59,14 +67,15 @@ endif
 set incsearch   " show search matches as you type
 set ignorecase  " case insensitive search
 set smartcase   " If a capital letter is included in search, make it case-sensitive
-set nohlsearch  " dont highlight search results
+set hlsearch    " dont highlight search results
 
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 " Don’t show the intro message when starting Vim
 set shortmess=atI
+set shortmess+=O
 " Don't beep
-set visualbell
+set novisualbell
 " Disable error bells
 set noerrorbells
 " Show the filename in the window titlebar
@@ -81,6 +90,12 @@ set mouse-=a
 set nostartofline
 " Auto read when a file is changed on disk
 set autoread
+" set paste! - toggle key
+set pastetoggle=<F9>
+" split below and right like tmux
+set splitbelow splitright
+" hide buffers even modified
+set hidden
 
 " Enhance command-line completion
 set wildmenu
@@ -91,13 +106,24 @@ set listchars=tab:→\ ,trail:•,eol:¬,nbsp:␣,precedes:«,extends:»
 
 " Always show status line
 set laststatus=2
+"set statusline=
+"set statusline+=%#LineNr#
+"set statusline+=%F
+"set statusline+=%=
+"set statusline+=%y
+"set statusline+=\ %p%%
+"set statusline+=\ %l:%c
+"set statusline+=\ 
+
+highlight CustomColor ctermbg=red ctermfg=white guibg=#592929
+match CustomColor /\%81v.\+/
 
 " Centralize backups, swapfiles and undo history
 "set backup
 set backupdir=~/.vim/backups//
 set directory=~/.vim/swaps//
 if exists("&undodir")
-"	set undofile
+	set undofile
 	set undodir=~/.vim/undo//
 endif
 " Don’t create backups when editing files in certain directories
@@ -124,7 +150,7 @@ if has("autocmd")
 	" Enable file type detection
 	filetype on
 	" Treat .s files as .sh
-	"autocmd BufNewFile,BufRead *.s setfiletype bash syntax=sh
+	autocmd BufNewFile,BufRead *.s setfiletype sh syntax=sh
 	" Turn on spell check for certain filetypes automatically
 	autocmd BufRead,BufNewFile *.txt setlocal spell spelllang=en_us
 	autocmd FileType gitcommit setlocal spell spelllang=en_us
