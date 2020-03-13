@@ -1,0 +1,10 @@
+set -o vi
+
+PS1='\[\033[0;31m\]\u\[\033[0m\]:\[\033[0;36m\]\w\[\033[0m\]$ '
+
+alias l="ls -l"
+alias ll="ls -l"
+alias la="ls -la"
+alias c="clear"
+
+alias tmux="tmux -u"

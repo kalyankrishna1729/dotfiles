@@ -45,7 +45,7 @@ set softtabstop=4
 " Number of spaces to use for autoindenting
 set shiftwidth=4
 " Use multiple of shiftwidth when indenting with '<' and '>'
-set shiftround
+"set shiftround
 " Insert tabs on the start of a line according to shiftwidth, not tabstop
 set smarttab
 " Always set autoindenting on
