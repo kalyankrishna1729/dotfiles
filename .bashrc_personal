@@ -1,6 +1,7 @@
 set -o vi
 
 PS1='\[\033[0;31m\]\u\[\033[0m\]:\[\033[0;36m\]\w\[\033[0m\]$ '
+TERM='xterm-256color'
 
 # my aliases
 alias c="clear"
@@ -12,4 +13,3 @@ alias ...="cd ../../"
 alias ....="cd ../../../"
 alias .....="cd ../../../../"
 alias -- -="cd -"
-alias tmux="tmux -u"
